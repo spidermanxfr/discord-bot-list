@@ -1,0 +1,30 @@
+# Tasks Checklist — Discord Bot List
+
+- [x] Initial project environment setup
+  - [x] Create `.env.example` at project root
+  - [x] Initialize `backend` directory (package.json, tsconfig.json)
+  - [x] Initialize `frontend` directory using `create-next-app`
+  - [x] Create root level files (`docker-compose.yml`, `README.md`)
+- [x] Backend development
+  - [x] Create Database connection & Mongoose schemas
+  - [x] Setup Express App, config loaders, and basic middlewares (cors, helmet, rate-limiter, session)
+  - [x] Setup Passport.js for Discord OAuth + JWT authentication fallback for APIs
+  - [x] Implement controllers & routes for Auth (with mock logic for offline testing)
+  - [x] Implement controllers & routes for Bots (CRUD, Search, Category/Tag lists)
+  - [x] Implement controllers & routes for Reviews & Reports (Submit, Reply, Moderation)
+  - [x] Implement controllers & routes for Analytics & Logs
+  - [x] Implement controllers & routes for Admin (verify/reject, ban users/bots)
+  - [x] Implement API-key, Webhook logic, and Swagger documentation
+- [x] Frontend development
+  - [x] Configure global theme, fonts, and colors in CSS & Tailwind config
+  - [x] Setup Auth context, API client services, and React Query
+  - [x] Implement Main Layout (Navbar, Footer, Search bar) and Command Palette (Ctrl+K)
+  - [x] Implement Landing Page (Hero search, Categories grid, Statistics, Trending/Newest carousels)
+  - [x] Implement Search & Filter page (infinite scroll/pagination, filters, sorting)
+  - [x] Implement Bot Details page (Banner, Avatar, Owner details, Markdown long description, Reviews section, Vote system, Related bots)
+  - [x] Implement Developer Dashboard (Bot submission, Edit Bot, Webhook configurations, Team management, Analytics charts)
+  - [x] Implement Admin Dashboard (Bot verification queue, Reports queue, Audit logs list, Settings configuration)
+- [x] Verification and Testing
+  - [x] Compile and verify backend code builds
+  - [x] Run Next.js build validation on frontend
+  - [x] Perform manual integration tests of UI/API flow
