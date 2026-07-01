@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { api } from '@/lib/api';
 import toast from 'react-hot-toast';
 
@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchProfile = async (jwtToken: string) => {
+  const fetchProfile = useCallback(async (jwtToken: string) => {
     try {
       const response = await api.get('/auth/me', {
         headers: { Authorization: `Bearer ${jwtToken}` }
@@ -52,23 +52,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const login = (jwtToken: string) => {
-    localStorage.setItem('token', jwtToken);
-    setToken(jwtToken);
-    setLoading(true);
-    fetchProfile(jwtToken);
-  };
-
-  const logoutLocal = () => {
+  const logoutLocal = useCallback(() => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
     setLoading(false);
-  };
+  }, []);
 
-  const logout = async () => {
+  const login = useCallback((jwtToken: string) => {
+    localStorage.setItem('token', jwtToken);
+    setToken(jwtToken);
+    setLoading(true);
+    fetchProfile(jwtToken);
+  }, [fetchProfile]);
+
+  const logout = useCallback(async () => {
     try {
       await api.post('/auth/logout');
     } catch (err) {
@@ -77,9 +77,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       logoutLocal();
       toast.success('Logged out successfully.');
     }
-  };
+  }, [logoutLocal]);
 
-  const mockLogin = async (role: 'user' | 'moderator' | 'admin') => {
+  const mockLogin = useCallback(async (role: 'user' | 'moderator' | 'admin') => {
     setLoading(true);
     try {
       const response = await api.post(`/auth/mock?role=${role}`);
@@ -94,7 +94,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
