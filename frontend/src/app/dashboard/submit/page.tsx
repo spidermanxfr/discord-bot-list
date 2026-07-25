@@ -89,7 +89,7 @@ export default function SubmitBot() {
             <Plus className="h-6 w-6 text-primary-custom" />
             Add Your Bot
           </h1>
-          <p className="text-sm text-muted-text mt-0.5">Submit your Discord Bot for review and listing on BotSpace.</p>
+          <p className="text-sm text-muted-text mt-0.5">Submit your Discord Bot for review and listing on DisCova.</p>
         </div>
       </div>
 
@@ -108,50 +108,16 @@ export default function SubmitBot() {
           <p className="text-xxs text-muted-text mt-0.5">Retrieve this from your Discord Developer Portal under Application General Information.</p>
         </div>
 
-        {/* Prefix, Library & Language */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-white">Prefix <span className="text-danger-custom">*</span></label>
-            <input
-              type="text"
-              placeholder="!"
-              {...register('prefix')}
-              className="discord-input"
-            />
-            {errors.prefix && <p className="text-xs text-danger-custom mt-1">{errors.prefix.message}</p>}
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-white">Library</label>
-            <select
-              {...register('library')}
-              className="discord-input cursor-pointer"
-            >
-              <option value="">Select (Optional)</option>
-              <option value="discord.js">discord.js</option>
-              <option value="discord.py">discord.py</option>
-              <option value="discord-go">discord-go</option>
-              <option value="eris">eris</option>
-              <option value="other">other</option>
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-white">Language</label>
-            <select
-              {...register('language')}
-              className="discord-input cursor-pointer"
-            >
-              <option value="">Select (Optional)</option>
-              <option value="JavaScript">JavaScript</option>
-              <option value="TypeScript">TypeScript</option>
-              <option value="Python">Python</option>
-              <option value="Go">Go</option>
-              <option value="Java">Java</option>
-              <option value="Rust">Rust</option>
-              <option value="C#">C#</option>
-            </select>
-          </div>
+        {/* Prefix */}
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-semibold text-white">Prefix <span className="text-danger-custom">*</span></label>
+          <input
+            type="text"
+            placeholder="!"
+            {...register('prefix')}
+            className="discord-input"
+          />
+          {errors.prefix && <p className="text-xs text-danger-custom mt-1">{errors.prefix.message}</p>}
         </div>
 
         {/* Category Pills Select */}

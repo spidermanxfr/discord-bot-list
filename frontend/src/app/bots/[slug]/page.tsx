@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { api } from '@/lib/api';
@@ -258,21 +259,31 @@ export default function BotDetails() {
   if (!bot) return null;
 
   const isDeveloper = user && (bot.owner === user.discordId || bot.team.includes(user.discordId));
+  const isUnclaimed = bot.owner === 'unclaimed';
 
   return (
     <div className="flex-1 flex flex-col w-full pb-16">
       
       {/* Hero Banner Header */}
-      <div className="relative w-full h-44 bg-secondary-bg border-b border-border-custom/50 flex items-end">
-        <div className="mx-auto max-w-7xl w-full px-4 md:px-8 pb-4 flex flex-col sm:flex-row items-center sm:items-end justify-between gap-6 transform translate-y-10 sm:translate-y-12">
+      <div className="relative w-full h-48 bg-gradient-to-r from-[#151922] via-[#0b0d12] to-[#151922] border-b border-border-custom/50 flex items-end">
+        {/* Subtle grid pattern inside hero */}
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        {/* Ambient Aurora glow behind the bot info */}
+        <div className="absolute bottom-[-50px] left-[15%] h-56 w-56 rounded-full bg-primary-custom/10 blur-[50px] pointer-events-none animate-pulse-glow" />
+        
+        <div className="mx-auto max-w-7xl w-full px-4 md:px-8 pb-5 flex flex-col sm:flex-row items-center sm:items-end justify-between gap-6 transform translate-y-8 sm:translate-y-10 z-10">
           
           <div className="flex flex-col sm:flex-row items-center sm:items-end gap-5">
-            <div className="h-28 w-28 rounded-3xl bg-card-bg border-2 border-border-custom flex items-center justify-center text-3xl font-bold text-white overflow-hidden shadow-2xl shrink-0">
-              {bot.avatar ? (
-                <img src={bot.avatar} alt={bot.name} className="h-full w-full object-cover" />
-              ) : (
-                bot.name.substring(0, 2).toUpperCase()
-              )}
+            <div className="relative group shrink-0">
+              {/* Outer soft glowing border */}
+              <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-primary-custom to-indigo-500 opacity-40 blur-md transition duration-300 group-hover:opacity-65" />
+              <div className="relative h-28 w-28 rounded-3xl bg-card-bg border border-white/10 flex items-center justify-center text-3xl font-bold text-white overflow-hidden shadow-2xl">
+                {bot.avatar ? (
+                  <img src={bot.avatar} alt={bot.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                ) : (
+                  bot.name.substring(0, 2).toUpperCase()
+                )}
+              </div>
             </div>
             
             <div className="text-center sm:text-left flex flex-col gap-1.5 pb-2">
@@ -292,7 +303,7 @@ export default function BotDetails() {
           <div className="flex flex-wrap sm:flex-nowrap gap-3 pb-2 shrink-0 w-full sm:w-auto justify-center sm:justify-end">
             <button
               onClick={() => window.open(bot.inviteUrl || `https://discord.com/oauth2/authorize?client_id=${bot.botId}&permissions=0&scope=bot`, '_blank')}
-              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 rounded-lg bg-primary-custom hover:bg-primary-hover px-5 py-2.5 text-sm font-bold text-white transition-colors text-center"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 rounded-lg bg-primary-custom hover:bg-primary-hover px-5 py-2.5 text-sm font-bold text-white transition-colors text-center shadow-lg shadow-primary-custom/10 hover:shadow-primary-custom/25"
             >
               Invite Bot
               <ExternalLink className="h-4 w-4" />
@@ -329,42 +340,68 @@ export default function BotDetails() {
         </div>
       </div>
 
-      {/* Main Panel grid */}
-      <div className="mx-auto max-w-7xl w-full px-4 md:px-8 mt-24 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Alert Banner for Unclaimed Bot Profiles */}
+      {isUnclaimed && (
+        <div className="mx-auto max-w-7xl w-full px-4 md:px-8 mt-20 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="relative overflow-hidden rounded-2xl border border-warning-custom/35 bg-warning-custom/5 p-5 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-5 shadow-2xl">
+            {/* Ambient inner glow */}
+            <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-warning-custom/10 blur-[40px] pointer-events-none" />
+            
+            <div className="flex items-start gap-4">
+              <div className="h-10 w-10 rounded-xl bg-warning-custom/10 border border-warning-custom/25 flex items-center justify-center text-warning-custom shrink-0 mt-0.5 shadow-inner">
+                <AlertTriangle className="h-5 w-5 animate-pulse" />
+              </div>
+              <div className="flex flex-col gap-1 text-left">
+                <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
+                  Unclaimed Profile
+                </h4>
+                <p className="text-xs text-text-secondary leading-relaxed max-w-2xl">
+                  This bot profile was added manually by platform administrators to showcase popular community tools. 
+                  If you are the official developer of <strong>{bot.name}</strong>, you can claim ownership to manage details, view stats, and customize your page by raising a claim ticket on our support server.
+                </p>
+              </div>
+            </div>
+            
+            <a
+              href="/contact"
+              className="w-full md:w-auto text-center text-xs font-extrabold bg-warning-custom text-black hover:bg-warning-custom/90 px-5 py-3 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-warning-custom/20 shrink-0"
+            >
+              Raise Claim Ticket
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Main Grid */}
+      <div className={`mx-auto max-w-7xl w-full px-4 md:px-8 ${isUnclaimed ? 'mt-8' : 'mt-24'} grid grid-cols-1 lg:grid-cols-3 gap-8`}>
         
         {/* Left Column: Quick Info & Stats */}
         <div className="lg:col-span-1 flex flex-col gap-6 order-2 lg:order-1">
-          <div className="rounded-xl bg-card-bg border border-border-custom p-5 flex flex-col gap-4">
+          <div className="rounded-xl bg-card-bg border border-border-custom p-5 flex flex-col gap-4 shadow-xl">
             <h3 className="text-md font-bold text-white border-b border-border-custom/50 pb-2">Information</h3>
             
-            <div className="flex flex-col gap-3 text-sm">
-              <div className="flex justify-between">
+            <div className="flex flex-col gap-1 text-sm">
+              <div className="flex justify-between items-start gap-4 py-2.5 border-b border-white/[0.03] hover:bg-white/[0.01] px-1 rounded transition-colors">
                 <span className="text-muted-text">Developer</span>
-                <span className="text-white font-semibold">{bot.owner}</span>
+                {isUnclaimed ? (
+                  <span className="text-amber-400 font-bold text-right text-xs max-w-[200px] leading-relaxed">
+                    No author provided (Added by Admins). For claiming, <Link href="/contact" className="underline hover:text-amber-300">raise a ticket</Link>.
+                  </span>
+                ) : (
+                  <span className="text-white font-semibold">{bot.owner}</span>
+                )}
               </div>
               {bot.prefix && (
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center py-2.5 border-b border-white/[0.03] hover:bg-white/[0.01] px-1 rounded transition-colors">
                   <span className="text-muted-text">Prefix</span>
-                  <span className="bg-background border border-border-custom px-1.5 py-0.5 rounded font-mono text-xs text-white">{bot.prefix}</span>
+                  <span className="bg-background border border-border-custom px-2 py-0.5 rounded font-mono text-xs text-white font-semibold">{bot.prefix}</span>
                 </div>
               )}
-              {bot.library && (
-                <div className="flex justify-between">
-                  <span className="text-muted-text">Library</span>
-                  <span className="text-white font-medium">{bot.library}</span>
-                </div>
-              )}
-              {bot.language && (
-                <div className="flex justify-between">
-                  <span className="text-muted-text">Language</span>
-                  <span className="text-white font-medium">{bot.language}</span>
-                </div>
-              )}
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center py-2.5 border-b border-white/[0.03] hover:bg-white/[0.01] px-1 rounded transition-colors">
                 <span className="text-muted-text">Server Count</span>
                 <span className="text-white font-bold flex items-center gap-1"><Cpu className="h-4 w-4 text-primary-custom" /> {bot.serverCount.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center py-2.5 hover:bg-white/[0.01] px-1 rounded transition-colors">
                 <span className="text-muted-text">Views</span>
                 <span className="text-white font-bold flex items-center gap-1"><Eye className="h-4 w-4 text-warning-custom" /> {bot.views.toLocaleString()}</span>
               </div>
@@ -372,15 +409,15 @@ export default function BotDetails() {
 
             {/* Links row */}
             <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-border-custom/50">
-              {bot.supportUrl && <a href={bot.supportUrl} target="_blank" rel="noreferrer" className="flex items-center justify-between text-sm text-text-secondary hover:text-white"><span className="flex items-center gap-1.5"><MessageCircle className="h-4 w-4 text-primary-custom" /> Support Server</span> <ExternalLink className="h-3 w-3" /></a>}
-              {bot.websiteUrl && <a href={bot.websiteUrl} target="_blank" rel="noreferrer" className="flex items-center justify-between text-sm text-text-secondary hover:text-white"><span className="flex items-center gap-1.5"><Heart className="h-4 w-4 text-danger-custom" /> Website</span> <ExternalLink className="h-3 w-3" /></a>}
-              {bot.githubUrl && <a href={bot.githubUrl} target="_blank" rel="noreferrer" className="flex items-center justify-between text-sm text-text-secondary hover:text-white"><span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-white" /> GitHub Repository</span> <ExternalLink className="h-3 w-3" /></a>}
+              {bot.supportUrl && <a href={bot.supportUrl} target="_blank" rel="noreferrer" className="flex items-center justify-between text-sm text-text-secondary hover:text-white py-1 hover:translate-x-0.5 transition-transform"><span className="flex items-center gap-1.5"><MessageCircle className="h-4 w-4 text-primary-custom" /> Support Server</span> <ExternalLink className="h-3 w-3" /></a>}
+              {bot.websiteUrl && <a href={bot.websiteUrl} target="_blank" rel="noreferrer" className="flex items-center justify-between text-sm text-text-secondary hover:text-white py-1 hover:translate-x-0.5 transition-transform"><span className="flex items-center gap-1.5"><Heart className="h-4 w-4 text-danger-custom" /> Website</span> <ExternalLink className="h-3 w-3" /></a>}
+              {bot.githubUrl && <a href={bot.githubUrl} target="_blank" rel="noreferrer" className="flex items-center justify-between text-sm text-text-secondary hover:text-white py-1 hover:translate-x-0.5 transition-transform"><span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-white" /> GitHub Repository</span> <ExternalLink className="h-3 w-3" /></a>}
             </div>
 
             {/* Flag Report Button */}
             <button
               onClick={() => { if (!user) { toast.error('Login to report.'); return; } setShowReportModal(true); }}
-              className="mt-2 w-full text-center text-xs font-semibold text-danger-custom bg-danger-custom/10 hover:bg-danger-custom/20 rounded-lg py-2 flex items-center justify-center gap-1.5"
+              className="mt-2 w-full text-center text-xs font-semibold text-danger-custom bg-danger-custom/10 hover:bg-danger-custom/20 rounded-lg py-2.5 flex items-center justify-center gap-1.5 transition-colors"
             >
               <AlertTriangle className="h-3.5 w-3.5" />
               Report this Bot
@@ -389,11 +426,11 @@ export default function BotDetails() {
 
           {/* Tags card */}
           {bot.tags && bot.tags.length > 0 && (
-            <div className="rounded-xl bg-card-bg border border-border-custom p-5 flex flex-col gap-3">
+            <div className="rounded-xl bg-card-bg border border-border-custom p-5 flex flex-col gap-3 shadow-xl">
               <h3 className="text-sm font-bold text-white">Tags</h3>
               <div className="flex flex-wrap gap-2">
                 {bot.tags.map((tag: string) => (
-                  <span key={tag} className="text-xs rounded bg-background border border-border-custom px-2.5 py-1 text-muted-text">
+                  <span key={tag} className="text-xs rounded bg-background border border-border-custom px-2.5 py-1 text-muted-text hover:text-white hover:border-white/10 transition-colors">
                     #{tag}
                   </span>
                 ))}

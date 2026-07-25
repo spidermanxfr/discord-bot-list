@@ -183,38 +183,11 @@ export default function EditBot() {
           <p className="text-xxs text-muted-text">Access your bot at /bots/my-awesome-bot. Alphanumeric characters and hyphens only.</p>
         </div>
 
-        {/* Prefix, Library & Language */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-white">Prefix</label>
-            <input type="text" {...register('prefix')} className="discord-input" />
-            {errors.prefix && <p className="text-xs text-danger-custom">{errors.prefix.message}</p>}
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-white">Library</label>
-            <select {...register('library')} className="discord-input cursor-pointer">
-              <option value="">Select (Optional)</option>
-              <option value="discord.js">discord.js</option>
-              <option value="discord.py">discord.py</option>
-              <option value="discord-go">discord-go</option>
-              <option value="eris">eris</option>
-              <option value="other">other</option>
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-white">Language</label>
-            <select {...register('language')} className="discord-input cursor-pointer">
-              <option value="">Select (Optional)</option>
-              <option value="JavaScript">JavaScript</option>
-              <option value="TypeScript">TypeScript</option>
-              <option value="Python">Python</option>
-              <option value="Go">Go</option>
-              <option value="Java">Java</option>
-              <option value="Rust">Rust</option>
-            </select>
-          </div>
+        {/* Prefix */}
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-semibold text-white">Prefix <span className="text-danger-custom">*</span></label>
+          <input type="text" {...register('prefix')} className="discord-input" />
+          {errors.prefix && <p className="text-xs text-danger-custom">{errors.prefix.message}</p>}
         </div>
 
         {/* Categories Pills */}

@@ -130,7 +130,7 @@ export default function DeveloperDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border-custom/50 pb-5">
         <div>
           <h1 className="text-3xl font-extrabold text-white">Developer Dashboard</h1>
-          <p className="text-sm text-muted-text mt-1">Manage and monitor your Discord bots listed on BotSpace.</p>
+          <p className="text-sm text-muted-text mt-1">Manage and monitor your Discord bots listed on DisCova.</p>
         </div>
         <button
           onClick={() => router.push('/dashboard/submit')}
