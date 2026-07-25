@@ -10,14 +10,19 @@ const AuthCallbackHandler = () => {
   const { login } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const processedRef = React.useRef(false);
 
   useEffect(() => {
+    if (processedRef.current) return;
+    
     const token = searchParams.get('token');
     if (token) {
+      processedRef.current = true;
       login(token);
       toast.success('Successfully logged in via Discord!');
       router.push('/dashboard');
-    } else {
+    } else if (!token && typeof window !== 'undefined') {
+      processedRef.current = true;
       toast.error('Authentication failed. No token received.');
       router.push('/');
     }

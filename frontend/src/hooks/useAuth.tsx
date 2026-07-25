@@ -38,13 +38,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const logoutLocal = useCallback(() => {
-    localStorage.removeItem('token');
-    setToken(null);
-    setUser(null);
-    setLoading(false);
-  }, []);
-
   const fetchProfile = useCallback(async (jwtToken: string) => {
     try {
       const response = await api.get('/auth/me', {
@@ -59,7 +52,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } finally {
       setLoading(false);
     }
-  }, [logoutLocal]);
+  }, []);
+
+  const logoutLocal = useCallback(() => {
+    localStorage.removeItem('token');
+    setToken(null);
+    setUser(null);
+    setLoading(false);
+  }, []);
 
   const login = useCallback((jwtToken: string) => {
     localStorage.setItem('token', jwtToken);
