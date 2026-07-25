@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'discord-bot-list-backend',
-      script: './backend/dist/app.js',
+      script: './dist/app.js',
       cwd: './backend',
       instances: 'max',
       exec_mode: 'cluster',
@@ -19,7 +19,7 @@ module.exports = {
       instances: 'max',
       exec_mode: 'cluster',
       env: {
-        PORT: 3000,
+        PORT: 3060,
         NODE_ENV: 'production'
       }
     }
