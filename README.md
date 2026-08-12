@@ -1,74 +1,59 @@
-# Discord Bot List Platform (BotSpace)
+# 🚀 Discord Bot List
 
-BotSpace is a modern, responsive, and secure Discord Bot List platform built using **Next.js 15 (App Router)** and **Express TypeScript + MongoDB**. It features Discord-inspired typography and spacing, a premium dark design system, and custom development hooks.
-
-## 🚀 Features
-
-- **Discord-Inspired Premium Theme**: Consistent styling with customized scrollbars, glass panels, skeleton loaders, and Framer Motion micro-animations.
-- **Robust Authentication**: Integration with Passport Discord OAuth2, generating secure JWT sessions.
-- **Mock Authentication Portals**: A simulation mode for developer testing without needing a live Discord Client ID/Secret.
-- **Interactive Vote & Cooldown**: Handles a 12-hour voting cooldown using MongoDB indexes, with developer webhook triggers.
-- **REST API + Keys**: Issuing and revoking developer API keys for posting statistics (server/shard counts).
-- **Admin Panel**: Queue moderation (Approve, Reject, Verify, Feature bots) and developer suspensions.
-- **Containerized Deployments**: Complete `docker-compose.yml` and production `Dockerfiles` for local cluster testing.
+<p align="center">
+  <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge" alt="Status" />
+</p>
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Overview
 
-### Frontend
-- **Framework**: Next.js 15 (App Router, App-TW)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4, Lucide Icons
-- **State & Fetching**: TanStack React Query, Axios, React Hook Form, Zod, React Hot Toast
-
-### Backend
-- **Framework**: Node.js, Express (TypeScript ESModules)
-- **Database**: MongoDB, Mongoose
-- **Auth**: Passport.js, Discord OAuth2, JSON Web Tokens (JWT)
-- **Security**: Helmet CSP, CORS configuration, Rate Limiter, Compression
+**Discord Bot List** is the ultimate platform designed to discover, invite, and promote high-quality Discord bots and communities. Built with modern architecture, real-time metrics, and verified bot reviews, our list helps bot developers showcase their creations to thousands of active server managers.
 
 ---
 
-## ⚙️ Environment Configuration
+## 🔥 Key Features
 
-Copy `.env.example` to `.env` at the root and fill in the values:
-```bash
-cp .env.example .env
-```
-
----
-
-## 🏃 Local Setup & Installation
-
-### Option A: Running with Docker Compose (Recommended)
-This command spins up MongoDB, the API Backend, and the NextJS client app:
-```bash
-docker-compose up --build
-```
-- API Endpoint: `http://localhost:5000`
-- Web Application: `http://localhost:3000`
-
-### Option B: Manual Local Setup
-
-1. **MongoDB**: Ensure MongoDB is running on `mongodb://localhost:27017/discord_bot_list`.
-2. **Backend**:
-   ```bash
-   cd backend
-   npm install
-   npm run dev
-   ```
-3. **Frontend**:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+- 🤖 **Bot Discovery & Submission**: Easily submit and list your Discord bot with custom tags, prefixes, and detailed descriptions.
+- 🗳️ **Real-time Upvoting System**: Fair and transparent voting system allowing communities to support their favorite bots.
+- 🔍 **Advanced Search & Filtering**: Instant search powered by categories, popularity, and tags (Moderation, Music, Gaming, Economy, AI).
+- ✅ **Bot Verification & Security**: Thorough reviewer checks to ensure only safe, online, and high-quality bots get verified badges.
+- 📊 **Live Stats & Uptime Monitoring**: Display live server count, shard status, ping, and uptime records.
+- 💬 **Ratings & Reviews**: Verified user feedback and star ratings to build trust and community engagement.
 
 ---
 
-## 🛡️ Developer Simulation Mode
-To easily evaluate developer dashboard features offline (without needing active Discord developer credentials):
-1. Launch the frontend and click the **Mock Login** button.
-2. Select a role: **Standard Developer**, **Moderator**, or **Global Administrator**.
-3. You will immediately be authenticated as a mock session so you can test submissions, editings, and approvals!
+## 🛠️ Tech Stack & Architecture
+
+- **Frontend**: Responsive UI with Server-Side Rendering & Client Optimizations.
+- **Backend Services**: High-performance Node.js REST API with OAuth2 Discord integration.
+- **Database**: MongoDB for fast, scalable storage of bot metrics, users, and audit logs.
+- **Authentication**: Discord OAuth2 for secure one-click login and role verification.
+
+---
+
+## 🌐 Community & Support
+
+Join our official Discord community to test bots, request reviews, get developer support, or promote your server:
+
+<p align="center">
+  <a href="https://discord.gg/1066224579342774302">
+    <img src="https://img.shields.io/badge/Join_Discord_Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join Discord" />
+  </a>
+</p>
+
+---
+
+## 🔒 Source Code & Privacy Notice
+
+> [!NOTE]
+> The source code and backend infrastructure of Discord Bot List are kept in a secure, private repository environment to prevent unauthorized cloning and to maintain backend security. This repository serves as the **official product showcase & public landing page**.
+
+---
+
+<p align="center">
+  <sub>Developed & Maintained with ❤️ by <strong>spidermanxfr</strong></sub>
+</p>
