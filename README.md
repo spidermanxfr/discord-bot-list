@@ -1,51 +1,52 @@
-# 🤖 Discord Bot List Platform
+# 🚀 DBList - Top Discord Bots & Communities Showcase
 
-Welcome to **Discord Bot List**, a modern web platform built to discover, invite, review, and promote Discord bots and communities.
-
----
-
-## 📸 Platform Interface Screenshots
-
-### 🏠 Home Page & Bot Explorer
-![Discord Bot List Homepage](assets/homepage.jpg)
-
-### 🤖 Bot Profile & Review Page
-![Discord Bot Profile Detail](assets/bot_detail.jpg)
+Welcome to **DBList**, the premier platform to discover, vote for, and invite top Discord bots for moderation, music, economy, gaming, and fun!
 
 ---
 
-## 🌟 Key Features
+## 📸 Real Platform Preview
 
-- 🔐 **Discord OAuth2 Login**: Quick & secure login using Discord accounts.
-- ⚡ **Bot Listing & Search**: Instant filtering by categories (Moderation, Music, Gaming, Economy, AI).
-- 🗳️ **Upvote & Review System**: User rating system and real-time upvotes for listed bots.
-- 📊 **Admin Dashboard & Analytics**: Visitor statistics, bot approval queue, and management tools.
-- 🛡️ **SEO & HTTPS Security**: Pre-configured meta tags, dynamic sitemaps, and SSL auto-redirection.
+### 🏠 Home Explorer Page
+![DBList Home Explorer](assets/homepage.jpg)
 
 ---
 
-## 🏗️ Technology Stack
-
-- **Backend Framework**: Express.js (Node.js)
-- **Database**: MongoDB with Mongoose ODM
-- **Templating Engine**: EJS (Embedded JavaScript)
-- **Authentication**: Passport.js with Discord OAuth2 Strategy
-- **Session Management**: Express-Session backed by MongoStore
+### 🤖 OwO Bot Profile Page (`/bot/408785106942164992`)
+![OwO Bot Profile Detail Page](assets/bot_detail.jpg)
 
 ---
 
-## 🌐 Official Discord Community
+## 🔥 Key Features & Capabilities
 
-Join our official Discord server for bot support, submission updates, and community chat:
-
-[👉 Join Discord Community](https://discord.gg/1066224579342774302)
+- ⚡ **Instant Search & Filtering**: Discover bots by tags including *Moderation, Music, Economy, Anime, Gaming, Utility*.
+- 🗳️ **Upvoting System**: Boost your favorite Discord bots to top rankings.
+- 🔐 **Discord OAuth2 Login**: Seamless one-click login for bot owners and server managers.
+- 🛡️ **Verified Review Queue**: Admin review system ensuring listed bots are online and secure.
+- 📊 **Developer Portal & Webhooks**: Integrated webhook testing and developer dashboard.
 
 ---
 
-## 🔒 Source Code Privacy & License
+## 🛠️ Built With
+
+- **Backend**: Node.js & Express.js
+- **Database**: MongoDB & Mongoose
+- **Frontend Views**: EJS (Embedded JavaScript)
+- **Auth**: Passport.js with Discord OAuth2
+
+---
+
+## 💬 Join Community & Support
+
+Have a bot to list or need support? Join our official Discord community:
+
+[👉 Join Official Discord Server](https://discord.gg/1066224579342774302)
+
+---
+
+## 🔒 Source Privacy Note
 
 > [!NOTE]
-> This GitHub repository acts as the **Official Public Showcase**. To protect production security, live API secrets, and server infrastructure, the core backend source code is kept in private production environments.
+> This public repository serves as the official **product showcase & landing hub**. The core backend logic is deployed securely in private production server environments.
 
 ---
-Developed by **spidermanxfr**
+© 2026 **spidermanxfr** • All Rights Reserved
