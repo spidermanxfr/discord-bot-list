@@ -5,7 +5,7 @@ node_modules/
 package-lock.json
 *.log
 
-# Hide source code folders & files from being tracked in git
+# Exclude all code files and directories from Git tracking
 controllers/
 middleware/
 models/
@@ -16,3 +16,8 @@ config/
 config.json
 server.js
 discord_server_details.md
+backend/
+frontend/
+package.json
+PM2.config.js
+docker-compose.yml
