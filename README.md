@@ -7,12 +7,12 @@ Welcome to **DBList**, the premier platform to discover, vote for, and invite to
 ## 📸 Real Platform Preview
 
 ### 🏠 Home Explorer Page
-![DBList Home Explorer](assets/homepage.jpg)
+![DBList Home Explorer](https://raw.githubusercontent.com/spidermanxfr/discord-bot-list/main/assets/homepage.jpg?v=2)
 
 ---
 
 ### 🤖 OwO Bot Profile Page (`/bot/408785106942164992`)
-![OwO Bot Profile Detail Page](assets/bot_detail.jpg)
+![OwO Bot Profile Detail Page](https://raw.githubusercontent.com/spidermanxfr/discord-bot-list/main/assets/bot_detail.jpg?v=2)
 
 ---
 
