@@ -4,15 +4,22 @@ Welcome to **Discord Bot List**, a modern web platform built to discover, invite
 
 ---
 
-## 🌟 What is this Web Application?
+## 📸 Platform Interface Screenshots
 
-This is a full-stack Node.js & Express application designed for Discord bot developers and server managers.
+### 🏠 Home Page & Bot Explorer
+![Discord Bot List Homepage](assets/homepage.jpg)
 
-### Key Web App Features:
-- 🔐 **Discord OAuth2 Authentication**: Safe and easy 1-click login with Discord accounts.
-- ⚡ **Bot Listing & Search**: Filter bots by categories (Moderation, Music, Gaming, Economy, AI).
+### 🤖 Bot Profile & Review Page
+![Discord Bot Profile Detail](assets/bot_detail.jpg)
+
+---
+
+## 🌟 Key Features
+
+- 🔐 **Discord OAuth2 Login**: Quick & secure login using Discord accounts.
+- ⚡ **Bot Listing & Search**: Instant filtering by categories (Moderation, Music, Gaming, Economy, AI).
 - 🗳️ **Upvote & Review System**: User rating system and real-time upvotes for listed bots.
-- 📊 **Admin Dashboard & Analytics**: Detailed visitor statistics, bot review queue, and management tools.
+- 📊 **Admin Dashboard & Analytics**: Visitor statistics, bot approval queue, and management tools.
 - 🛡️ **SEO & HTTPS Security**: Pre-configured meta tags, dynamic sitemaps, and SSL auto-redirection.
 
 ---
